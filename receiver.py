@@ -58,7 +58,7 @@ def write_to_sql(message):
     cur = conn.cursor()
     cur.execute("DROP TABLE IF EXISTS alarms")
     cur.execute("CREATE TABLE alarms(time text)")
-    cur.execute('''INSERT INTO alarms VALUES(?)''', (message,))
+    cur.execute('''INSERT INTO alarms VALUES(?)''', (message,) )
     conn.commit()
     conn.close()
 
