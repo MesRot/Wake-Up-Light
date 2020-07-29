@@ -1,16 +1,28 @@
 from bluetooth import *
+import datetime
 
-bg_addr = '00:1A:7D:DA:71:13'
 
-port = 1
+def send_message(message):
+    bg_addr = '64:80:99:B0:77:A9'
+    port = 1
+    try:
+        sock = BluetoothSocket(RFCOMM)
+        sock.connect((bg_addr, port))
+        sock.send(message)
+        sock.close()
+    except BluetoothError as e:
+        print(f"Sending message failed {e}")
 
-sock = BluetoothSocket(RFCOMM)
 
-sock.connect((bg_addr, port))
+def set_alarm(alarm_date):
+    alarm_date = alarm_date.strftime("%m/%d/%Y, %H:%M:%S")
+    message = f"ALARM & {alarm_date}"
+    send_message(message)
 
-sock.send("Hello word!")
 
-sock.close()
+
+if __name__ == "__main__":
+   set_alarm(datetime.datetime.now())
 
 
 
