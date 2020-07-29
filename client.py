@@ -20,7 +20,6 @@ def set_alarm(alarm_date):
     send_message(message)
 
 
-
 if __name__ == "__main__":
    set_alarm(datetime.datetime.now())
 
