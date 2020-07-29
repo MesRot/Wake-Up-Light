@@ -6,14 +6,30 @@ port = 1
 server_sock.bind(("", port))
 server_sock.listen(1)
 
-client_sock, address = server_sock.accept()
+while True:
+    print("Waiting for incoming connection...")
 
-print(f"Accepted connection from {address}")
+    client_sock, address = server_sock.accept()
 
-data = client_sock.recv(1024)
-print(f"Received {data} ")
+    print(f"Accepted connection from {address}")
 
-client_sock.close()
+    print("Waiting for data...")
+
+    total = 0
+
+    while True:
+        try:
+            data = client_sock.recv(1024)
+        except BluetoothError as e:
+            break
+        if not data:
+            break
+        total += len(data)
+        print(f"Total byte read: {total}")
+
+    client_sock.close()
+    print("Connection closed")
+
 server_sock.close()
 
 
