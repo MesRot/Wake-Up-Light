@@ -8,7 +8,8 @@ DEFAULT_PATH =  "alarms.db"
 
 
 def process(message):
-    command, text = message.split("&").strip()
+    command, text = message.split("&")
+    command, text = command.strip(), text.strip()
     if command == "ALARM":
         write_to_sql(text)
     pass
@@ -40,7 +41,7 @@ def run_server():
             print(f"Total byte read: {total}")
 
         client_sock.close()
-        print("Connection closed")
+        print("Connection closed\n -----------")
     server_sock.close()
 
 
