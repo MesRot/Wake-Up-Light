@@ -20,9 +20,13 @@ def set_alarm(alarm_date):
     send_message(message)
 
 
+def main():
+    send_message("Fanni on ihana")
+
 
 if __name__ == "__main__":
-   set_alarm(datetime.datetime.now())
+    main()
+    #set_alarm(datetime.datetime.now())
 
 
 
